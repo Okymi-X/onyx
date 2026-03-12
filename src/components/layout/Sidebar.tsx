@@ -1,12 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronRight, FileText, Layers } from "lucide-react";
+import Image from "next/image";
+import { ChevronRight, ExternalLink, FileText, Github, Layers, Star } from "lucide-react";
 import type { OnyxDatabase, OnyxDocument } from "@/types/onyx";
 import onyxDb from "@/data/onyx-db.json";
 
 /** Typed reference to the parsed database */
 const db = onyxDb as unknown as OnyxDatabase;
+const REPO_URL = "https://github.com/Okymi-X/onyx";
 
 /**
  * CategoryItem -- collapsible navigation group for a single ## category.
@@ -125,10 +127,22 @@ export default function Sidebar() {
     <aside className="flex h-full w-64 shrink-0 flex-col border-r border-[#333333] bg-[#252525]">
       {/* Header */}
       <div className="border-b border-[#333333] px-4 py-3">
-        <h1 className="text-lg font-bold tracking-tight text-[#7d7af7]">
-          Onyx
-        </h1>
-        <p className="text-xs text-[#8b8b8b]">Command Reference</p>
+        <div className="flex items-center gap-2.5">
+          <Image
+            src="/logo-mark.png"
+            alt="Onyx"
+            width={56}
+            height={56}
+            className="shrink-0"
+            priority
+          />
+          <div>
+            <h1 className="text-lg font-bold leading-tight tracking-tight text-[#7d7af7]">
+              Onyx
+            </h1>
+            <p className="text-xs text-[#8b8b8b]">Command Reference</p>
+          </div>
+        </div>
       </div>
 
       {/* Navigation tree */}
@@ -145,8 +159,21 @@ export default function Sidebar() {
       </nav>
 
       {/* Footer stats */}
-      <div className="border-t border-[#333333] px-4 py-2 text-xs text-[#8b8b8b]">
-        {db.documentCount} docs / {db.commandCount} commands
+      <div className="border-t border-[#333333] px-4 py-3 text-xs text-[#8b8b8b]">
+        <p>
+          {db.documentCount} docs / {db.commandCount} commands
+        </p>
+        <a
+          href={REPO_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="mt-2 inline-flex items-center gap-1.5 text-[#b5b5b5] transition-colors hover:text-white"
+        >
+          <Github size={12} />
+          <span>Open source on GitHub</span>
+          <Star size={11} className="text-[#7d7af7]" />
+          <ExternalLink size={11} />
+        </a>
       </div>
     </aside>
   );

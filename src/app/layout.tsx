@@ -15,7 +15,12 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Onyx - Red Team Command Reference",
   description:
-    "Dynamic command reference for Red Teamers and Pentesters with live variable injection.",
+    "Open source red team command reference with live variable injection, searchable docs, and community-driven contributions.",
+  icons: {
+    icon: "/favicon.png",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
