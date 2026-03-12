@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+/**
+ * Obsidian Dark Mode Theme
+ * Palette designed for extended screen time during pentesting sessions.
+ * All colors are desaturated to reduce eye strain.
+ */
+
+:root {
+  /* Core backgrounds */
+  --bg-primary: #1E1E1E;
+  --bg-secondary: #252525;
+  --bg-tertiary: #2D2D2D;
+  --bg-elevated: #333333;
+
+  /* Text hierarchy */
+  --text-primary: #D4D4D4;
+  --text-secondary: #9E9E9E;
+  --text-muted: #6B6B6B;
+
+  /* Accent - desaturated violet/blue */
+  --accent-primary: #7D7AF7;
+  --accent-hover: #9B99FF;
+  --accent-muted: #5C5ABF;
+
+  /* Functional colors */
+  --success: #4EC9B0;
+  --warning: #D7BA7D;
+  --error: #F44747;
+  --info: #569CD6;
+
+  /* Borders */
+  --border-primary: #3E3E3E;
+  --border-subtle: #2E2E2E;
+
+  /* Code block */
+  --code-bg: #1A1A1A;
+  --code-border: #333333;
+}
+
+@theme inline {
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-bg-tertiary: var(--bg-tertiary);
+  --color-bg-elevated: var(--bg-elevated);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+
+  --color-accent: var(--accent-primary);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-muted: var(--accent-muted);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+  --color-info: var(--info);
+
+  --color-border-primary: var(--border-primary);
+  --color-border-subtle: var(--border-subtle);
+
+  --color-code-bg: var(--code-bg);
+  --color-code-border: var(--code-border);
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--bg-elevated) var(--bg-primary);
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+/* Selection styling consistent with the dark theme */
+::selection {
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+}
