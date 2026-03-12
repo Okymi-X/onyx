@@ -2,6 +2,9 @@
   "name": "onyx",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "clean:next": "node -e \"require('node:fs').rmSync('.next', { recursive: true, force: true })\"",
     "parse": "tsx scripts/parse-markdown.ts",

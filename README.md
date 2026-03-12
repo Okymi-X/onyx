@@ -71,6 +71,35 @@ The development flow automatically:
 - Parses Markdown notes before dev and build.
 - Regenerates the JSON command database from `data/raw_notes/`.
 
+## Deploy on Vercel
+
+This project is configured for Vercel.
+
+Vercel will automatically:
+
+- Install dependencies with `npm ci`
+- Run `npm run build`
+- Execute the Markdown parser via the `prebuild` hook before the Next.js production build
+
+Deployment steps:
+
+1. Push the repository to GitHub.
+2. Import the repository into Vercel.
+3. Keep the default framework preset as `Next.js`.
+4. Deploy.
+
+Current Vercel config lives in `vercel.json`.
+
+Node runtime is pinned in `package.json` with:
+
+```json
+"engines": {
+	"node": ">=20"
+}
+```
+
+No environment variables are currently required for production deployment.
+
 ## Available Scripts
 
 ```bash

@@ -4,7 +4,7 @@ import MainLayout from "@/components/layout/MainLayout";
 import CategoryView from "@/components/commands/CategoryView";
 import type { OnyxDatabase } from "@/types/onyx";
 import onyxDb from "@/data/onyx-db.json";
-import { ArrowUpRight, Github, HeartHandshake, Sparkles, Star } from "lucide-react";
+import { ArrowUpRight, Github, HeartHandshake, Star } from "lucide-react";
 
 const db = onyxDb as unknown as OnyxDatabase;
 const REPO_URL = "https://github.com/Okymi-X/onyx";
@@ -18,11 +18,10 @@ export default function Home() {
   return (
     <MainLayout>
       <div className="mx-auto max-w-4xl px-8 py-8">
-        <section className="mb-10 rounded-3xl border border-[#333333] bg-[radial-gradient(circle_at_top_left,rgba(125,122,247,0.18),transparent_30%),linear-gradient(135deg,rgba(255,255,255,0.02),rgba(0,0,0,0.08))] p-7 shadow-[0_20px_50px_rgba(0,0,0,0.25)]">
+        <section className="mb-10 rounded-3xl border border-[#333333] bg-[#202020] p-7 shadow-[0_20px_50px_rgba(0,0,0,0.18)]">
           <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
             <div className="max-w-2xl space-y-4">
-              <div className="inline-flex items-center gap-2 rounded-full border border-[#3a3a3a] bg-black/20 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#9a97ff]">
-                <Sparkles size={12} />
+              <div className="border-l-2 border-[#7d7af7] pl-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#9a97ff]">
                 Open Source Red Team Knowledge Base
               </div>
               <h1 className="max-w-3xl text-3xl font-bold leading-tight tracking-tight text-white md:text-4xl">
