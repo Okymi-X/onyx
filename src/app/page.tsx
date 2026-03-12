@@ -17,14 +17,14 @@ const REPO_URL = "https://github.com/Okymi-X/onyx";
 export default function Home() {
   return (
     <MainLayout>
-      <div className="mx-auto max-w-4xl px-8 py-8">
-        <section className="mb-10 rounded-3xl border border-[#333333] bg-[#202020] p-7 shadow-[0_20px_50px_rgba(0,0,0,0.18)]">
+      <div className="mx-auto max-w-4xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+        <section className="mb-8 rounded-3xl border border-[#333333] bg-[#202020] p-5 shadow-[0_20px_50px_rgba(0,0,0,0.18)] sm:mb-10 sm:p-7">
           <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
             <div className="max-w-2xl space-y-4">
               <div className="border-l-2 border-[#7d7af7] pl-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#9a97ff]">
                 Open Source Red Team Knowledge Base
               </div>
-              <h1 className="max-w-3xl text-3xl font-bold leading-tight tracking-tight text-white md:text-4xl">
+              <h1 className="max-w-3xl text-2xl font-bold leading-tight tracking-tight text-white sm:text-3xl md:text-4xl">
                 Onyx is open source. Contribute commands, improve notes, and
                 help turn the repo into a sharper field reference.
               </h1>
@@ -49,7 +49,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="w-full max-w-[280px] shrink-0">
+            <div className="w-full shrink-0 lg:max-w-[280px]">
               <a
                 href={REPO_URL}
                 target="_blank"
@@ -82,9 +82,9 @@ export default function Home() {
         </section>
 
         {db.documents.map((doc) => (
-          <div key={doc.fileName} className="mb-16">
+          <div key={doc.fileName} className="mb-12 sm:mb-16">
             {/* Document title */}
-            <h2 className="mb-6 border-b border-[#333333] pb-3 text-3xl font-bold text-[#7d7af7]">
+            <h2 className="mb-5 border-b border-[#333333] pb-3 text-2xl font-bold text-[#7d7af7] sm:mb-6 sm:text-3xl">
               {doc.fileName}
             </h2>
             {doc.categories.map((cat) => (

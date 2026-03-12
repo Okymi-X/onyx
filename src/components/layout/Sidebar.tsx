@@ -107,7 +107,13 @@ function DocumentGroup({
  * Displays a hierarchical tree: Document > Category > Section.
  * Clicking a section scrolls the main content to the relevant block.
  */
-export default function Sidebar() {
+export default function Sidebar({
+  className = "",
+  onSectionNavigate,
+}: {
+  className?: string;
+  onSectionNavigate?: () => void;
+}) {
   /** Scroll to the target section in the main content area */
   const handleSectionClick = (
     docName: string,
@@ -121,10 +127,13 @@ export default function Sidebar() {
     if (el) {
       el.scrollIntoView({ behavior: "smooth", block: "start" });
     }
+    onSectionNavigate?.();
   };
 
   return (
-    <aside className="flex h-full w-64 shrink-0 flex-col border-r border-[#333333] bg-[#252525]">
+    <aside
+      className={`flex h-full w-64 shrink-0 flex-col border-r border-[#333333] bg-[#252525] ${className}`}
+    >
       {/* Header */}
       <div className="border-b border-[#333333] px-4 py-3">
         <div className="flex items-center gap-2.5">

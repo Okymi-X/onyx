@@ -57,11 +57,17 @@ function ConfigField({
  * ConfigPanel -- right-side panel for editing global target variables.
  * Connected to the Zustand store; every keystroke updates all hydrated commands.
  */
-export default function ConfigPanel() {
+export default function ConfigPanel({
+  className = "",
+}: {
+  className?: string;
+}) {
   const store = useTargetStore();
 
   return (
-    <aside className="flex h-full w-72 shrink-0 flex-col border-l border-[#333333] bg-[#252525]">
+    <aside
+      className={`flex h-full w-72 shrink-0 flex-col border-l border-[#333333] bg-[#252525] ${className}`}
+    >
       {/* Header */}
       <div className="flex items-center justify-between border-b border-[#333333] px-4 py-3">
         <h2 className="text-sm font-semibold uppercase tracking-wider text-[#d4d4d4]">
