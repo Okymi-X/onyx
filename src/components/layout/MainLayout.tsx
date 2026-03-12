@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PanelLeft, SlidersHorizontal, X } from "lucide-react";
 import Sidebar from "@/components/layout/Sidebar";
 import ConfigPanel from "@/components/layout/ConfigPanel";
@@ -21,6 +21,32 @@ export default function MainLayout({
 }>) {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isConfigOpen, setIsConfigOpen] = useState(false);
+
+  useEffect(() => {
+    const hasOverlayOpen = isNavOpen || isConfigOpen;
+    if (!hasOverlayOpen) {
+      return;
+    }
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [isNavOpen, isConfigOpen]);
+
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsNavOpen(false);
+        setIsConfigOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
 
   return (
     <div className="flex h-dvh overflow-hidden bg-[#1e1e1e]">
@@ -68,13 +94,13 @@ export default function MainLayout({
       </div>
 
       {isNavOpen && (
-        <div className="fixed inset-0 z-50 flex lg:hidden">
+        <div className="fixed inset-0 z-50 flex lg:hidden" role="dialog" aria-modal="true" aria-label="Navigation panel">
           <button
             onClick={() => setIsNavOpen(false)}
             className="h-full flex-1 bg-black/60"
             aria-label="Close navigation panel"
           />
-          <div className="relative h-full">
+          <div className="relative h-full animate-[slide-in-right_180ms_ease-out]">
             <button
               onClick={() => setIsNavOpen(false)}
               className="absolute right-2 top-2 z-10 rounded-md border border-[#3a3a3a] bg-[#252525] p-1.5 text-[#d4d4d4]"
@@ -91,13 +117,13 @@ export default function MainLayout({
       )}
 
       {isConfigOpen && (
-        <div className="fixed inset-0 z-50 flex justify-end xl:hidden">
+        <div className="fixed inset-0 z-50 flex justify-end xl:hidden" role="dialog" aria-modal="true" aria-label="Target config panel">
           <button
             onClick={() => setIsConfigOpen(false)}
             className="h-full flex-1 bg-black/60"
             aria-label="Close target config panel"
           />
-          <div className="relative h-full">
+          <div className="relative h-full animate-[slide-in-right_180ms_ease-out]">
             <button
               onClick={() => setIsConfigOpen(false)}
               className="absolute right-2 top-2 z-10 rounded-md border border-[#3a3a3a] bg-[#252525] p-1.5 text-[#d4d4d4]"

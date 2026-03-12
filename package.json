@@ -8,9 +8,9 @@
   "scripts": {
     "clean:next": "node -e \"require('node:fs').rmSync('.next', { recursive: true, force: true })\"",
     "parse": "tsx scripts/parse-markdown.ts",
-    "predev": "npm run clean:next && tsx scripts/parse-markdown.ts",
+    "predev": "npm run clean:next && npm run parse",
     "dev": "next dev",
-    "prebuild": "tsx scripts/parse-markdown.ts",
+    "prebuild": "npm run clean:next && npm run parse",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"

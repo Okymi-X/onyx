@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import MainLayout from "@/components/layout/MainLayout";
 import CategoryView from "@/components/commands/CategoryView";
 import type { OnyxDatabase } from "@/types/onyx";
@@ -8,6 +9,7 @@ import { ArrowUpRight, Github, HeartHandshake, Star } from "lucide-react";
 
 const db = onyxDb as unknown as OnyxDatabase;
 const REPO_URL = "https://github.com/Okymi-X/onyx";
+const INITIAL_VISIBLE_DOCS = 3;
 
 /**
  * Home page -- renders all documents, categories and commands
@@ -15,6 +17,22 @@ const REPO_URL = "https://github.com/Okymi-X/onyx";
  * Commands are hydrated in real time via the Zustand store.
  */
 export default function Home() {
+  const [visibleDocCount, setVisibleDocCount] = useState(INITIAL_VISIBLE_DOCS);
+
+  useEffect(() => {
+    if (visibleDocCount >= db.documents.length) {
+      return;
+    }
+
+    const timer = window.setTimeout(() => {
+      setVisibleDocCount((current) => Math.min(current + 2, db.documents.length));
+    }, 120);
+
+    return () => window.clearTimeout(timer);
+  }, [visibleDocCount]);
+
+  const visibleDocuments = db.documents.slice(0, visibleDocCount);
+
   return (
     <MainLayout>
       <div className="mx-auto max-w-4xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
@@ -81,7 +99,7 @@ export default function Home() {
           </div>
         </section>
 
-        {db.documents.map((doc) => (
+        {visibleDocuments.map((doc) => (
           <div key={doc.fileName} className="mb-12 sm:mb-16">
             {/* Document title */}
             <h2 className="mb-5 border-b border-[#333333] pb-3 text-2xl font-bold text-[#7d7af7] sm:mb-6 sm:text-3xl">
@@ -96,6 +114,12 @@ export default function Home() {
             ))}
           </div>
         ))}
+
+        {visibleDocCount < db.documents.length && (
+          <div className="mb-10 rounded-xl border border-[#333333] bg-[#202020] px-4 py-3 text-sm text-[#8b8b8b]">
+            Loading remaining documents...
+          </div>
+        )}
       </div>
     </MainLayout>
   );
