@@ -8,9 +8,10 @@
   "scripts": {
     "clean:next": "node -e \"require('node:fs').rmSync('.next', { recursive: true, force: true })\"",
     "parse": "tsx scripts/parse-markdown.ts",
-    "predev": "npm run clean:next && npm run parse",
+    "parse:posts": "tsx scripts/parse-posts.ts",
+    "predev": "npm run clean:next && npm run parse && npm run parse:posts",
     "dev": "next dev",
-    "prebuild": "npm run clean:next && npm run parse",
+    "prebuild": "npm run clean:next && npm run parse && npm run parse:posts",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
@@ -22,6 +23,10 @@
     "next": "^15.5.12",
     "react": "19.2.3",
     "react-dom": "19.2.3",
+    "react-markdown": "^10.1.0",
+    "rehype-autolink-headings": "^7.1.0",
+    "rehype-slug": "^6.0.0",
+    "remark-gfm": "^4.0.1",
     "zustand": "^5.0.11"
   },
   "devDependencies": {
@@ -32,6 +37,7 @@
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",
     "eslint-config-next": "^15.5.12",
+    "gray-matter": "^4.0.3",
     "tailwindcss": "^4",
     "tsx": "^4.21.0",
     "typescript": "^5"

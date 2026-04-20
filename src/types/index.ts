@@ -61,3 +61,5 @@ export interface SearchResult {
   sectionTitle: string;
   commandPreview: string;
 }
+
+export type { PostType, Difficulty, PostTypeTheme, BlogPost, PostsDatabase, TocEntry } from './blog';

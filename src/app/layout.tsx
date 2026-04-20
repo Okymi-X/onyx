@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import TopNav from "@/components/layout/TopNav";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,9 +14,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Onyx - Red Team Command Reference",
+  title: "Onyx — Red Team Knowledge Base",
   description:
-    "Open source red team command reference with live variable injection, searchable docs, and community-driven contributions.",
+    "Security blog, CTF write-ups, pentesting notes, and command reference for red teamers. Open source and community-driven.",
   icons: {
     icon: "/favicon.png",
     shortcut: "/favicon.ico",
@@ -31,8 +32,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#1e1e1e] text-[#d4d4d4]`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#1e1e1e] text-[#d4d4d4] pt-14`}
       >
+        <TopNav />
         {children}
       </body>
     </html>
