@@ -6,24 +6,27 @@ interface Props {
 
 export default function StatsBar({ commandCount, docCount, postCount }: Props) {
   const stats = [
-    { value: commandCount, label: 'commands' },
-    { value: docCount, label: 'cheat sheets' },
-    { value: postCount, label: 'posts' },
-    { value: null, label: 'Open Source' },
+    { value: commandCount, label: 'commands', color: '#569CD6' },
+    { value: docCount,     label: 'cheat sheets', color: '#4EC9B0' },
+    { value: postCount,    label: 'posts', color: '#7D7AF7' },
+    { value: null,         label: 'Open Source', color: '#D7BA7D' },
   ];
 
   return (
-    <div className="mx-auto mb-12 max-w-4xl px-4 sm:px-6">
-      <div className="flex flex-wrap gap-2">
-        {stats.map(({ value, label }) => (
+    <div className="mx-auto mb-14 max-w-4xl px-4 sm:px-6">
+      <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
+        {stats.map(({ value, label, color }) => (
           <div
             key={label}
-            className="inline-flex items-center gap-2 rounded-full border border-[#2e2e2e] bg-[#1a1a1a] px-4 py-2 text-sm"
+            className="inline-flex items-center gap-2 rounded-full border border-[#252525] bg-[#171717] px-4 py-2 text-sm"
           >
             {value !== null && (
-              <span className="font-semibold text-white">{value}</span>
+              <span className="font-bold" style={{ color }}>{value.toLocaleString()}</span>
             )}
-            <span className="text-[#6b6b6b]">{label}</span>
+            {value === null && (
+              <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: color }} />
+            )}
+            <span className="text-[#555555]">{label}</span>
           </div>
         ))}
       </div>

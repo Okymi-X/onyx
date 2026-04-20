@@ -43,21 +43,20 @@ export default function BlogPageClient({ posts }: Props) {
   };
 
   const filtered = activeFilter === 'all' ? posts : posts.filter((p) => p.type === activeFilter);
-
   const countFor = (type: Filter) =>
     type === 'all' ? posts.length : posts.filter((p) => p.type === type).length;
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
+    <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6">
       {/* Header */}
-      <div className="mb-8">
-        <h1 className="mb-1 text-3xl font-bold text-white">Blog</h1>
-        <p className="text-sm text-[#6b6b6b]">
+      <div className="mb-10">
+        <h1 className="mb-2 text-3xl font-bold text-white">Blog</h1>
+        <p className="text-sm text-[#555555]">
           Articles, CTF write-ups, and security notes.
         </p>
       </div>
 
-      {/* Filter tabs */}
+      {/* Filter pills */}
       <div className="mb-8 flex flex-wrap gap-2">
         {FILTERS.map(({ value, label, color }) => {
           const isActive = activeFilter === value;
@@ -66,19 +65,19 @@ export default function BlogPageClient({ posts }: Props) {
             <button
               key={value}
               onClick={() => handleFilter(value)}
-              className="flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-sm font-medium transition-colors"
+              className="flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-medium transition-all duration-150"
               style={{
-                color: isActive ? color : '#6b6b6b',
-                borderColor: isActive ? `${color}50` : '#2e2e2e',
-                backgroundColor: isActive ? `${color}12` : 'transparent',
+                color: isActive ? color : '#555555',
+                borderColor: isActive ? `${color}40` : '#222222',
+                backgroundColor: isActive ? `${color}10` : 'transparent',
               }}
             >
               {label}
               <span
-                className="rounded-full px-1.5 py-0.5 text-[10px] font-semibold"
+                className="rounded-full px-1.5 py-0.5 text-[10px] font-semibold tabular-nums"
                 style={{
-                  color: isActive ? color : '#555555',
-                  backgroundColor: isActive ? `${color}20` : '#2a2a2a',
+                  color: isActive ? color : '#3a3a3a',
+                  backgroundColor: isActive ? `${color}18` : '#1a1a1a',
                 }}
               >
                 {count}
@@ -90,11 +89,11 @@ export default function BlogPageClient({ posts }: Props) {
 
       {/* Posts grid */}
       {filtered.length === 0 ? (
-        <div className="rounded-xl border border-[#2e2e2e] bg-[#1a1a1a] py-16 text-center">
-          <p className="text-sm text-[#6b6b6b]">No posts yet in this category.</p>
+        <div className="rounded-xl border border-[#1e1e1e] py-20 text-center">
+          <p className="text-sm text-[#444444]">No posts yet in this category.</p>
         </div>
       ) : (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((post) => (
             <PostCard key={post.slug} post={post} />
           ))}

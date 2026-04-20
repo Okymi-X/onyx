@@ -16,11 +16,14 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Onyx — Red Team Knowledge Base",
   description:
-    "Security blog, CTF write-ups, pentesting notes, and command reference for red teamers. Open source and community-driven.",
+    "Command cheat sheets, CTF write-ups, articles, and security notes — searchable, live-hydrated, and open source.",
   icons: {
-    icon: "/favicon.png",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.png", type: "image/png" },
+    ],
+    apple: "/logo-mark.png",
     shortcut: "/favicon.ico",
-    apple: "/favicon.png",
   },
 };
 
@@ -32,7 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#1e1e1e] text-[#d4d4d4] pt-14`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#111111] text-[#d4d4d4] pt-14`}
       >
         <TopNav />
         {children}
